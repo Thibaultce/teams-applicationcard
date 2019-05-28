@@ -1,3 +1,5 @@
+import Api from "../../Api";
+
 export interface IApplicationCardProps {
-  description: string;
+  api: Api;
 }

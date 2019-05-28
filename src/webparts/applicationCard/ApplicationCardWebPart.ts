@@ -9,7 +9,8 @@ import {
 
 import * as strings from 'ApplicationCardWebPartStrings';
 import ApplicationCard from './components/ApplicationCard';
-import { IApplicationCardProps } from './components/IApplicationCardProps';
+import { IApplicationCardProps } from './components/ApplicationCard/IApplicationCardProps';
+import Api from './Api';
 
 export interface IApplicationCardWebPartProps {
   description: string;
@@ -17,11 +18,28 @@ export interface IApplicationCardWebPartProps {
 
 export default class ApplicationCardWebPart extends BaseClientSideWebPart<IApplicationCardWebPartProps> {
 
+  private _api: Api;
+
+  protected onInit(): Promise<any> {
+    let retVal: Promise<any> = Promise.resolve();
+    if (this.context.microsoftTeams) {
+      retVal = new Promise((resolve, reject) => {
+        this.context.microsoftTeams.getContext(context => {
+          this._api = new Api(context);
+          resolve();
+        });
+      });
+    }else{
+      this._api = new Api(null);
+    }
+    return retVal;
+  }
+
   public render(): void {
     const element: React.ReactElement<IApplicationCardProps > = React.createElement(
       ApplicationCard,
       {
-        description: this.properties.description
+        api: this._api
       }
     );
 

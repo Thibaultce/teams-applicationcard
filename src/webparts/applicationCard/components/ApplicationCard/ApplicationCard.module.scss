@@ -1,0 +1,32 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.applicationCard {
+  .container {
+    background-color: $ms-color-themeDarker;
+    @include ms-Grid;
+  }
+
+  .row {
+    @include ms-Grid-row;
+    @include ms-fontColor-white;
+  }
+
+  .columnLeft {
+    @include ms-Grid-col;
+    @include ms-lg3;
+    @include ms-xl3;
+    @include ms-sm5;
+    @include ms-md5;
+    background-color: $ms-color-themePrimary;
+  }
+
+  .columnRight {
+    @include ms-Grid-col;
+    @include ms-lg9;
+    @include ms-xl9;
+    @include ms-sm7;
+    @include ms-md7;
+    background-color: $ms-color-themeSecondary;
+  }
+  
+}

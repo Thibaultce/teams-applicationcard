@@ -1,0 +1,10 @@
+@import '~office-ui-fabric-react/dist/sass/Fabric.scss';
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+
+$box-marginbottom: 20px;
+
+.box {
+    margin-bottom: $box-marginbottom;
+    @include ms-font-l ;
+}
