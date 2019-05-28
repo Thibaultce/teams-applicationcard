@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "application-card-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/applicationCard/ApplicationCardWebPart.js",
+          "manifest": "./src/webparts/applicationCard/ApplicationCardWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ApplicationCardWebPartStrings": "lib/webparts/applicationCard/loc/{locale}.js"
+  }
+}
