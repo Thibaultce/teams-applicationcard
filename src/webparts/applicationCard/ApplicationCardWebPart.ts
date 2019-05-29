@@ -8,8 +8,7 @@ import {
 } from '@microsoft/sp-property-pane';
 
 import * as strings from 'ApplicationCardWebPartStrings';
-import ApplicationCard from './components/ApplicationCard';
-import { IApplicationCardProps } from './components/ApplicationCard/IApplicationCardProps';
+import ApplicationCard, { IApplicationCardProps } from './components/ApplicationCard';
 import Api from './Api';
 
 export interface IApplicationCardWebPartProps {
@@ -29,7 +28,8 @@ export default class ApplicationCardWebPart extends BaseClientSideWebPart<IAppli
           resolve();
         });
       });
-    }else{
+    }
+    else{
       this._api = new Api(null);
     }
     return retVal;

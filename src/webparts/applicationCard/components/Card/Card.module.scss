@@ -1,0 +1,36 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+$box-marginbottom: 20px;
+
+.card {
+    margin-bottom: $box-marginbottom;
+    box-shadow: 0 0 6px 0 rgba(37, 36, 36, 0.3);
+    border-top-color: #6264A7;
+    border-top-width: 4px;
+    border-radius: 5px;
+    border-top-style: solid;
+
+    .cardTitle {
+        color: #6264A7;
+        background-color: #edebe9;
+        font-size: 12px;
+        line-height: 18px;
+        height: 27px;
+        padding-top: 7px;
+        padding-left: 13px;
+
+        img {
+            width: 21px;
+            height: 21px;
+            vertical-align:middle;
+        }
+        span {
+            margin-left: 5px; 
+        }
+    }
+
+    .cardBody {
+        color: #605e5c;
+        padding: 13px;
+    }
+}

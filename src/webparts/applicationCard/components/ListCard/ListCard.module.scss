@@ -1,0 +1,22 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.list {
+    
+    padding-left: 25px;
+    list-style-type:square;
+        li {
+            a {
+                color: #ca5010;
+                text-decoration: none;
+                a:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    span {
+        font-size: 0.7em;
+        color: #c8c6c4;
+        font-style: italic;
+        margin-left: 3px;
+    }
+}
