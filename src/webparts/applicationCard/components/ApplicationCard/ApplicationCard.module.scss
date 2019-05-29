@@ -14,8 +14,8 @@
     @include ms-Grid-col;
     @include ms-lg3;
     @include ms-xl3;
-    @include ms-sm5;
-    @include ms-md5;
+    @include ms-sm4;
+    @include ms-md4;
     
   }
 
@@ -23,16 +23,16 @@
     @include ms-Grid-col;
     @include ms-lg9;
     @include ms-xl9;
-    @include ms-sm7;
-    @include ms-md7;
+    @include ms-sm8;
+    @include ms-md8;
   }
 
   .column3 {
     @include ms-Grid-col;
-    @include ms-lg3;
-    @include ms-xl3;
+    @include ms-lg4;
+    @include ms-xl4;
     @include ms-sm6;
-    @include ms-md6;
+    @include ms-md4;
   }
   
 }

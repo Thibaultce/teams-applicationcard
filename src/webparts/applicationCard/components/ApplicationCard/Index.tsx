@@ -31,10 +31,12 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
   }
 
   public componentDidMount() {
-    const project = this.props.api.getProjectDetails();
-    this.setState({
-      project
-    })
+    this.props.api.getProjectDetails().then(project => {
+      this.setState({
+        project
+      })
+    });
+    
   }
 
   public render(): React.ReactElement<IApplicationCardProps> {
@@ -43,25 +45,21 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
       project
     } = this.state;
 
-    if (project != null) {
-      console.log(project.Technologies);
-
-    }
     return (
       <div className={styles.applicationCard}>
         <div className={styles.container}>
           <div className={styles.row}>
             <div className={styles.columnLeft}>
               <ProjectCard name={project && project.Name} client={project && project.Customer} version={project && project.Version}></ProjectCard>
-              <Card cardTitle={project && project.TeamName} cardIcon="team.png">
+              <Card cardTitle={project && project.TeamName} cardIcon="team">
                 <ListCard ListItems={project != null && project.TeamMembers}></ListCard>
               </Card>
-              <Card cardTitle="Technologies" cardIcon="technologies.png">
+              <Card cardTitle="Technologies" cardIcon="technologies">
                 <ListCard ListItems={project != null && project.Technologies}></ListCard>
               </Card>
               {
                 project != null && project.Environments != null && project.Environments.length > 0
-                  ? <Card cardTitle="Environments" cardIcon="environment.png">
+                  ? <Card cardTitle="Environments" cardIcon="environment">
                     <ListCard ListItems={project != null && project.Environments}></ListCard>
                   </Card>
                   : <React.Fragment></React.Fragment>
@@ -81,7 +79,7 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
               {/* <Card cardTitle="Architecture"></Card> */}
               <div className={styles.row}>
                 <div className={styles.column3}>
-                  <Card cardTitle="Architecture"></Card>
+                  <Card cardTitle="Architecture" cardIcon="architecture"></Card>
                 </div>
                 <div className={styles.column3}>
                   <Card cardTitle="Specification"></Card>

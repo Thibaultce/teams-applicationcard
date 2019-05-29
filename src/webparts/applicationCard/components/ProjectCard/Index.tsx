@@ -16,10 +16,13 @@ export default class ProjectCard extends React.Component<IProjectCardProps> {
   }
 
   public render() {
+
+    const icon :any = require('../../assets/project.png');
+
     return (
       <div className={styles.projectCard}>
         <div className={styles.centered}>
-          <img src="../../../../../assets/project.png" />
+          {<img src={icon} />}
         </div>
         <div className={styles.description}>
           <span className={styles.projectName}>{this.props.name}</span>
