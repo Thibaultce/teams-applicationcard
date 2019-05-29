@@ -25,7 +25,7 @@ export default class ListCard extends React.Component<IListCardProps, IListCardS
                 <ul className={styles.list}>
                     {
                         this.props.ListItems && this.props.ListItems.map(function (listItem, index) {
-                            var item = listItem.Url != null ? <a href={listItem.Url}>{listItem.Text}</a> : listItem.Text;
+                            var item = listItem.Url != null ? <a href={listItem.Url} target="_blank">{listItem.Text}</a> : listItem.Text;
                             return <li key={index}>{item}{listItem.Description && <span>{listItem.Description}</span>}</li>
                         })
                     }
