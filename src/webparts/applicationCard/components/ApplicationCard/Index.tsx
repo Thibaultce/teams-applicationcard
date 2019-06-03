@@ -66,26 +66,26 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
               }
               {
                 project != null && project.DevLinks != null && project.DevLinks.length > 0
-                  ? <Card cardTitle="Developers' corner">
+                  ? <Card cardTitle="Developers' corner" cardIcon="geek">
                     <ListCard ListItems={project != null && project.DevLinks}></ListCard>
                   </Card>
                   : <React.Fragment></React.Fragment>
               }
             </div>
             <div className={styles.columnRight}>
-              <Card cardTitle="Description">
+              <Card cardTitle="Description" cardIcon="description">
                 <TextCard content={project && project.Description}></TextCard>
               </Card>
               {/* <Card cardTitle="Architecture"></Card> */}
               <div className={styles.row}>
                 <div className={styles.column3}>
-                  <Card cardTitle="Architecture" cardIcon="architecture"></Card>
+                  <Card cardTitle="Architecture" cardIcon="link"></Card>
                 </div>
                 <div className={styles.column3}>
-                  <Card cardTitle="Specification"></Card>
+                  <Card cardTitle="Specification"  cardIcon="link"></Card>
                 </div>
                 <div className={styles.column3}>
-                  <Card cardTitle="Mockups"></Card>
+                  <Card cardTitle="Mockups"  cardIcon="link"></Card>
                 </div>
               </div>
             </div>
