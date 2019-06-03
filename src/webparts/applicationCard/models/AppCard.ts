@@ -10,8 +10,8 @@ export interface IAppCard {
     Technologies?: IListItem[];
     TeamName?: string;
     TeamMembers?: IListItem[];
-    Environments?: IListItem[];
-    DevLinks?: IListItem[];
+    Environments?: string;
+    DevCorner?: string;
 }
 
 export interface IListItem {

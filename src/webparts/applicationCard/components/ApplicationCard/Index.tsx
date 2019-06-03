@@ -55,19 +55,19 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
                 <ListCard ListItems={project != null && project.TeamMembers}></ListCard>
               </Card>
               <Card cardTitle="Technologies" cardIcon="technologies">
-                <ListCard ListItems={project != null && project.Technologies}></ListCard>
+              <ListCard ListItems={project != null && project.Technologies}></ListCard>
               </Card>
               {
                 project != null && project.Environments != null && project.Environments.length > 0
                   ? <Card cardTitle="Environments" cardIcon="environment">
-                    <ListCard ListItems={project != null && project.Environments}></ListCard>
+                    <TextCard content={project && project.Environments}></TextCard>
                   </Card>
                   : <React.Fragment></React.Fragment>
               }
               {
-                project != null && project.DevLinks != null && project.DevLinks.length > 0
+                project != null && project.DevCorner != null && project.DevCorner.length > 0
                   ? <Card cardTitle="Developers' corner" cardIcon="geek">
-                    <ListCard ListItems={project != null && project.DevLinks}></ListCard>
+                    <TextCard content={project && project.DevCorner}></TextCard>
                   </Card>
                   : <React.Fragment></React.Fragment>
               }

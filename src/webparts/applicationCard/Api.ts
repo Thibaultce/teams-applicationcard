@@ -63,6 +63,10 @@ export default class Api {
             Description: project.ACDescription,
             Architecture: project.ACArchitecture,
             TeamName: project.ACTeam,
+            Technologies: project.ACTechnologies0.map(x => <IListItem>{
+                Text: x.Label
+            }),
+            DevCorner: project.ACDevCorner
         };
 
         const members = project.ACTeamMembersId.map((x: number) => this.getUserTitle(x));
@@ -74,38 +78,5 @@ export default class Api {
         );
 
         return result;
-
-        // return {
-
-        //     TeamMembers: project.ACTeamMembersId.map(async (x: number) => {
-        //         return { Text: await this.getUserTitle(x) }
-        //     }
-        //     ),
-        //     //[
-        //     //     {
-        //     //         Text: "Thibault Ceulemans",
-        //     //         Description: "Software Architect"
-        //     //     },
-        //     //     {
-        //     //         Text: "Eléna Even",
-        //     //         Description: "UX Expert"
-        //     //     }
-        //     // ],
-        //     Technologies: [
-        //         {
-        //             Text: "Asp.Net Core"
-        //         },
-        //         {
-        //             Text: "Azure SQL"
-        //         }
-        //     ],
-        //     DevLinks: [
-        //         {
-        //             Text: "Azure DevOps",
-        //             Url: "http://google.com"
-        //         }
-        //     ]
-
-        // };
     }
 }
