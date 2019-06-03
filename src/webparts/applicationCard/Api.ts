@@ -62,7 +62,7 @@ export default class Api {
             Version: project.ProjectVersion,
             Description: project.ACDescription,
             Architecture: project.ACArchitecture,
-            TeamName: "Digital Factory",
+            TeamName: project.ACTeam,
         };
 
         const members = project.ACTeamMembersId.map((x: number) => this.getUserTitle(x));
