@@ -12,6 +12,9 @@ export interface IAppCard {
     TeamMembers?: IListItem[];
     Environments?: string;
     DevCorner?: string;
+    ArchitectureLinks?: IListItem[];
+    SpecificationLinks?: IListItem[];
+    MockupLinks?: IListItem[];
 }
 
 export interface IListItem {

@@ -24,9 +24,23 @@ export default class Api {
         return user.Title;
     }
 
+    private getFiles = async (channelName: string, type: string): Promise<IListItem[]> => {
+console.log('/sites/Coucou/Shared Documents/' + channelName + '/' + type);
+
+        const files = await sp.web
+            .getFolderByServerRelativePath('/sites/Coucou/Shared Documents/' + channelName + '/' + type)
+            .files.get();
+
+        return files.map(x => <IListItem>{
+            Text: x.Name,
+            Url: x.ServerRelativeUrl
+        });
+    }
+
     public getProjectDetails = async (): Promise<IAppCard> => {
         let channelId = 'SharePoint context';
         let channelName = 'SharePoint context';
+
         if (this._teamsContext) {
             channelId = this._teamsContext.channelId;
             channelName = this._teamsContext.channelName;
@@ -76,6 +90,10 @@ export default class Api {
             })
         }
         );
+
+        result.ArchitectureLinks = await this.getFiles(channelName, 'Architecture');
+        result.SpecificationLinks = await this.getFiles(channelName, 'Specifications');
+        result.MockupLinks = await this.getFiles(channelName, 'Mockups');
 
         return result;
     }

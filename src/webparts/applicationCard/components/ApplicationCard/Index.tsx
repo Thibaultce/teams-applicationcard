@@ -81,13 +81,19 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
               </Card>
               <div className={styles.row}>
                 <div className={styles.column3}>
-                  <Card cardTitle="Architecture" cardIcon="link"></Card>
+                  <Card cardTitle="Architecture" cardIcon="link">
+                    <ListCard ListItems={project != null && project.ArchitectureLinks}></ListCard>
+                  </Card>
                 </div>
                 <div className={styles.column3}>
-                  <Card cardTitle="Specification"  cardIcon="link"></Card>
+                  <Card cardTitle="Specification" cardIcon="link">
+                  <ListCard ListItems={project != null && project.SpecificationLinks}></ListCard>
+                  </Card>
                 </div>
                 <div className={styles.column3}>
-                  <Card cardTitle="Mockups"  cardIcon="link"></Card>
+                  <Card cardTitle="Mockups" cardIcon="link">
+                  <ListCard ListItems={project != null && project.MockupLinks}></ListCard>
+                  </Card>
                 </div>
               </div>
             </div>
