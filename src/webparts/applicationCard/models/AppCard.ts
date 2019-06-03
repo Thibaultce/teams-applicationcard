@@ -2,6 +2,8 @@ import { Guid } from "@microsoft/sp-core-library";
 
 export interface IAppCard {
     Id: Guid;
+    SpId: number;
+    EditLink: string;
     Name?: string;
     Version?: string;
     Customer?: string;

@@ -21,16 +21,17 @@ export default class ApplicationCardWebPart extends BaseClientSideWebPart<IAppli
 
   protected onInit(): Promise<any> {
     let retVal: Promise<any> = Promise.resolve();
+    
     if (this.context.microsoftTeams) {
       retVal = new Promise((resolve, reject) => {
-        this.context.microsoftTeams.getContext(context => {
-          this._api = new Api(context);
+        this.context.microsoftTeams.getContext(c => {
+          this._api = new Api(c, this.context);
           resolve();
         });
       });
     }
     else{
-      this._api = new Api(null, this.context);
+      this._api = new Api(null);
     }
     return retVal;
   }

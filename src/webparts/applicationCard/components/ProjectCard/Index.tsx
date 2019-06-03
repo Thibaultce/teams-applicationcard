@@ -5,6 +5,7 @@ export interface IProjectCardProps {
   name: string;
   version: string;
   client: string;
+  editUrl: string;
 }
 
 export default class ProjectCard extends React.Component<IProjectCardProps> {
@@ -29,7 +30,7 @@ export default class ProjectCard extends React.Component<IProjectCardProps> {
           <span className={styles.version}>{this.props.version}</span>
           <span className={styles.customer}>{this.props.client}</span>
         </div>
-
+        <a href={this.props.editUrl} target="_blank">Edit</a>
       </div>
     );
   }

@@ -1,28 +1,26 @@
 import * as microsoftTeams from '@microsoft/teams-js';
-import {
-    WebPartContext
-} from '@microsoft/sp-webpart-base';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
 import { IAppCard, IListItem } from './models/AppCard';
 import { Guid } from '@microsoft/sp-core-library';
-
 import { sp } from '@pnp/sp';
 import { setup } from "@pnp/common";
 
 export default class Api {
+
     private _teamsContext?: microsoftTeams.Context;
-    private _relativeUrl: string;
+    private _webPartContext?: WebPartContext;
 
-    constructor(teamsContext?: microsoftTeams.Context, context?: WebPartContext) {
+    private _projectListName: string = 'Projects';
+    private _sharePointContext: string = 'SharePoint context';
+
+    constructor(teamsContext?: microsoftTeams.Context, con?: WebPartContext) {
+
         this._teamsContext = teamsContext;
-        this._relativeUrl = context.pageContext.web.serverRelativeUrl;
-        
+        this._webPartContext = con;
+console.log(con);
         setup({
-            spfxContext: teamsContext
+            spfxContext: con
         });
-    }
-
-    public getTeamName(): string {
-        return this._teamsContext != null ? this._teamsContext.teamName : "SharePoint";
     }
 
     private getUserTitle = async (id: number): Promise<string> => {
@@ -30,11 +28,13 @@ export default class Api {
         return user.Title;
     }
 
-    private getFiles = async (channelName: string, type: string): Promise<IListItem[]> => {
-        console.log(this._teamsContext);
-        const files = await sp.web
+    private getFiles = async (type: string): Promise<IListItem[]> => {
+        const folderRelativeUrl = this._teamsContext != null
+            ? this._teamsContext.channelRelativeUrl
+            : this._webPartContext.pageContext.web.serverRelativeUrl + '/Shared Documents/' + this._sharePointContext;
 
-            .getFolderByServerRelativePath(this._relativeUrl + '/Shared Documents/' + channelName + '/' + type)
+        const files = await sp.web
+            .getFolderByServerRelativePath(folderRelativeUrl + '/' + type)
             .files.get();
 
         return files.map(x => <IListItem>{
@@ -44,8 +44,8 @@ export default class Api {
     }
 
     public getProjectDetails = async (): Promise<IAppCard> => {
-        let channelId = 'SharePoint context';
-        let channelName = 'SharePoint context';
+        let channelId = this._sharePointContext;
+        let channelName = this._sharePointContext;
 
         if (this._teamsContext) {
             channelId = this._teamsContext.channelId;
@@ -53,7 +53,7 @@ export default class Api {
         }
 
         const projects = (await sp.web.lists
-            .getByTitle("Projects")
+            .getByTitle(this._projectListName)
             .items
             .get()
         ).filter((e) => e.TeamsChannelIdentifier === channelId);
@@ -62,7 +62,7 @@ export default class Api {
         if (projects.length == 0) {
             // Creates project if it does not exists
             const addProject = await sp.web.lists
-                .getByTitle("Projects")
+                .getByTitle(this._projectListName)
                 .items
                 .add({
                     Title: channelName,
@@ -73,10 +73,13 @@ export default class Api {
         else {
             project = projects[0];
         }
-        console.log(project);
 
+
+        console.log(project); 
         let result: IAppCard = {
             Id: Guid.parse(project.GUID),
+            SpId: project.Id,
+            EditLink: this._webPartContext.pageContext.web.absoluteUrl + '/Lists/' + this._projectListName + '/DispForm.aspx?ID=' + project.Id,
             Name: project.Title,
             Customer: project.Company,
             Version: project.ProjectVersion,
@@ -89,17 +92,18 @@ export default class Api {
             DevCorner: project.ACDevCorner
         };
 
-        const members = project.ACTeamMembersId.map((x: number) => this.getUserTitle(x));
-        await Promise.all(members).then((completed) => {
-            result.TeamMembers = completed.map(x => <IListItem>{
-                Text: x
-            })
-        }
-        );
+        if (project.ACTeamMembersId != null){
+            const members = project.ACTeamMembersId.map((x: number) => this.getUserTitle(x));
+            await Promise.all(members).then((completed) => {
+                result.TeamMembers = completed.map(x => <IListItem>{
+                    Text: x
+                })
+            });
+        }    
 
-        result.ArchitectureLinks = await this.getFiles(channelName, 'Architecture');
-        result.SpecificationLinks = await this.getFiles(channelName, 'Specifications');
-        result.MockupLinks = await this.getFiles(channelName, 'Mockups');
+        result.ArchitectureLinks = await this.getFiles('Architecture');
+        result.SpecificationLinks = await this.getFiles('Specifications');
+        result.MockupLinks = await this.getFiles('Mockups');
 
         return result;
     }

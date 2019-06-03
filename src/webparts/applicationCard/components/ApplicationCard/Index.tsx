@@ -50,7 +50,7 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
         <div className={styles.container}>
           <div className={styles.row}>
             <div className={styles.columnLeft}>
-              <ProjectCard name={project && project.Name} client={project && project.Customer} version={project && project.Version}></ProjectCard>
+              <ProjectCard name={project && project.Name} client={project && project.Customer} version={project && project.Version} editUrl={project && project.EditLink}></ProjectCard>
               <Card cardTitle={project && project.TeamName} cardIcon="team">
                 <ListCard ListItems={project != null && project.TeamMembers}></ListCard>
               </Card>
