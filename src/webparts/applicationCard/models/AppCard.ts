@@ -6,6 +6,7 @@ export interface IAppCard {
     Version?: string;
     Customer?: string;
     Description?: string;
+    Architecture?: string;
     Technologies?: IListItem[];
     TeamName?: string;
     TeamMembers?: IListItem[];

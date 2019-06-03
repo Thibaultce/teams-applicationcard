@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './TextCard.module.scss';
 
 export interface ITextCardProps {
     content: string;
@@ -17,8 +18,8 @@ export default class TextCard extends React.Component<ITextCardProps, ITextCardS
 
   public render() {
     return (
-      <div>
-          <p>{this.props.content}</p> 
+      <div className={styles.textCard}>
+          <p dangerouslySetInnerHTML={{__html: this.props.content}}></p> 
       </div>
     );
   }

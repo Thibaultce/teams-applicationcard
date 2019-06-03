@@ -76,7 +76,9 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
               <Card cardTitle="Description" cardIcon="description">
                 <TextCard content={project && project.Description}></TextCard>
               </Card>
-              {/* <Card cardTitle="Architecture"></Card> */}
+              <Card cardTitle="Architecture" cardIcon="architecture">
+                <TextCard content={project && project.Architecture}></TextCard>
+              </Card>
               <div className={styles.row}>
                 <div className={styles.column3}>
                   <Card cardTitle="Architecture" cardIcon="link"></Card>
