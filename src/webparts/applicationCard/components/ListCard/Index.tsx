@@ -13,7 +13,7 @@ export interface IListCardState {
 export default class ListCard extends React.Component<IListCardProps, IListCardState> {
     constructor(props: IListCardProps) {
         super(props);
-
+            console.log(this.props.ListItems);
         this.state = {
 
         }
