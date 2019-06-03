@@ -30,7 +30,7 @@ export default class ApplicationCardWebPart extends BaseClientSideWebPart<IAppli
       });
     }
     else{
-      this._api = new Api(null);
+      this._api = new Api(null, this.context);
     }
     return retVal;
   }

@@ -1,4 +1,7 @@
 import * as microsoftTeams from '@microsoft/teams-js';
+import {
+    WebPartContext
+} from '@microsoft/sp-webpart-base';
 import { IAppCard, IListItem } from './models/AppCard';
 import { Guid } from '@microsoft/sp-core-library';
 
@@ -7,9 +10,12 @@ import { setup } from "@pnp/common";
 
 export default class Api {
     private _teamsContext?: microsoftTeams.Context;
+    private _relativeUrl: string;
 
-    constructor(teamsContext?: microsoftTeams.Context) {
+    constructor(teamsContext?: microsoftTeams.Context, context?: WebPartContext) {
         this._teamsContext = teamsContext;
+        this._relativeUrl = context.pageContext.web.serverRelativeUrl;
+        
         setup({
             spfxContext: teamsContext
         });
@@ -25,10 +31,10 @@ export default class Api {
     }
 
     private getFiles = async (channelName: string, type: string): Promise<IListItem[]> => {
-console.log('/sites/Coucou/Shared Documents/' + channelName + '/' + type);
-
+        console.log(this._teamsContext);
         const files = await sp.web
-            .getFolderByServerRelativePath('/sites/Coucou/Shared Documents/' + channelName + '/' + type)
+
+            .getFolderByServerRelativePath(this._relativeUrl + '/Shared Documents/' + channelName + '/' + type)
             .files.get();
 
         return files.map(x => <IListItem>{
