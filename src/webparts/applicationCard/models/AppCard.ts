@@ -14,13 +14,18 @@ export interface IAppCard {
     TeamMembers?: IListItem[];
     Environments?: string;
     DevCorner?: string;
-    ArchitectureLinks?: IListItem[];
-    SpecificationLinks?: IListItem[];
-    MockupLinks?: IListItem[];
+    Folder1?: IFolder;
+    Folder2?: IFolder;
+    Folder3?: IFolder;
 }
 
 export interface IListItem {
     Text: string;
     Url?: string;
     Description?: string;
+}
+
+export interface IFolder {
+    Name: string;
+    Items: IListItem[];
 }

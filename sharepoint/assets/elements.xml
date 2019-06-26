@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+
+    <!-- Site columns -->
+
+    <Field ID="{7c150cd7-d1aa-420e-9d86-975d2269f246}" Name="ACArchitecture" DisplayName="Architecture" Type="Note" RichText="TRUE" RichTextMode="FullHtml" Required="False" Group="Custom Columns" />
+    <Field ID="{c8e66a76-57dc-4673-b73d-d99dffbd6943}" Name="ACDevCorner" DisplayName="Dev's corner" Type="Note" RichText="TRUE" RichTextMode="FullHtml" Required="False" Group="Custom Columns" />
+    <Field ID="{e0221ac7-8969-49a1-958d-ea2c25650d73}" Name="ACDescription" DisplayName="Description" Type="Note" RichText="TRUE" RichTextMode="FullHtml" Required="False" Group="Custom Columns" />
+    <Field ID="{2f1011db-794e-4e13-87f0-215d17d5741d}" Name="ACTeam" DisplayName="Team" Type="Text" Required="False" MaxLength="30" Group="Custom Columns" />
+    <Field ID="{ce2505a9-5805-4ff8-b58a-90a9b7fd38f6}" Name="ACTeamMembers" DisplayName="Team members" Type="UserMulti" Mult="TRUE" Required="False" Group="Custom Columns" />
+    <Field ID="{0AF6E300-E338-440F-90CB-726C11028EE1}" Name="DevoteamDocTypeTaxHTField0" DisplayName="DevoteamDocType_0" Type="Note" ShowInViewForms="False" Required="False" Hidden="TRUE" CanToggleHidden="TRUE" Group="Custom Columns" />
+    <Field ID="{fca5f278-789f-4004-9ccd-f17bd19529d5}" Name="ACTechnologies" DisplayName="Technologies" Type="TaxonomyFieldTypeMulti" Mult="TRUE" Required="False" Group="Custom Columns">
+        <Customization>
+            <ArrayOfProperty>
+                <Property>
+                    <Name>SspId</Name>
+                    <!--ID of the Managed metadata service -->
+                    <Value xmlns:q1="http://www.w3.org/2001/XMLSchema" p4:type="q1:string" 
+                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">9549fb5c7eb5412c862f8ee74ae52b3b</Value>
+                </Property>
+                <Property>
+                    <Name>TermSetId</Name>
+                    <!--ID of the Termset -->
+                    <Value xmlns:q2="http://www.w3.org/2001/XMLSchema" p4:type="q2:string" 
+                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">868118a8-51d5-40d6-a478-8dde87ba6a18</Value>
+                </Property>
+                <Property>
+                    <Name>TextField</Name>
+                    <!--ID of the Note field declared above -->
+                    <Value xmlns:q6="http://www.w3.org/2001/XMLSchema" p4:type="q6:string" 
+                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{0AF6E300-E338-440F-90CB-726C11028EE1}</Value>
+                </Property>
+                <Property>
+                    <Name>IsPathRendered</Name>
+                    <Value xmlns:q7="http://www.w3.org/2001/XMLSchema" p4:type="q7:boolean" 
+                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">true</Value>
+                </Property>
+            </ArrayOfProperty>
+        </Customization>
+    </Field>
+    <Field ID="{bb875cd8-e085-4ec9-ac73-9d9619c853be}" Name="ACVersion" DisplayName="Version" Type="Text" Required="False" MaxLength="30" Group="Custom Columns" />
+    <Field ID="{b102a274-17af-49c0-a597-481d0c60a8a0}" Name="ACTeamsChannelIdentifier" DisplayName="Teams Channel Identifier" Type="Text" Required="False" MaxLength="50" Hidden="TRUE" CanToggleHidden="TRUE" Group="Custom Columns" />
+    <Field ID="{99403919-e15d-44c9-adbf-8ca2e5b95b1c}" Name="ACFolder1" DisplayName="Folder path 1" Type="Text" Required="False" MaxLength="100" Group="Custom Columns" />
+    <Field ID="{7459079c-4b7b-4ef6-a0a0-780eaae73508}" Name="ACFolder2" DisplayName="Folder path 2" Type="Text" Required="False" MaxLength="100" Group="Custom Columns" />
+    <Field ID="{23510aae-1b6b-4aec-86cd-4046c006580a}" Name="ACFolder3" DisplayName="Folder path 3" Type="Text" Required="False" MaxLength="100" Group="Custom Columns" />
+
+
+    <!-- Site content types -->
+    <ContentType ID="0x010065ece517ff274ba6a4010e551d102612" Name="Application Card" Group="Custom Content Types" Description="Content type for the application card" Overwrite="TRUE">
+        <FieldRefs>
+            <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" />
+            <FieldRef ID="{038d1503-4629-40f6-adaf-b47d1ab2d4fe}" />
+            <FieldRef ID="{7c150cd7-d1aa-420e-9d86-975d2269f246}" />
+            <FieldRef ID="{c8e66a76-57dc-4673-b73d-d99dffbd6943}" />
+            <FieldRef ID="{e0221ac7-8969-49a1-958d-ea2c25650d73}" />
+            <FieldRef ID="{2f1011db-794e-4e13-87f0-215d17d5741d}" />
+            <FieldRef ID="{ce2505a9-5805-4ff8-b58a-90a9b7fd38f6}" />
+            <FieldRef ID="{fca5f278-789f-4004-9ccd-f17bd19529d5}" />
+            <FieldRef ID="{bb875cd8-e085-4ec9-ac73-9d9619c853be}" />
+            <FieldRef ID="{b102a274-17af-49c0-a597-481d0c60a8a0}" />
+            <FieldRef ID="{99403919-e15d-44c9-adbf-8ca2e5b95b1c}" />
+            <FieldRef ID="{7459079c-4b7b-4ef6-a0a0-780eaae73508}" />
+            <FieldRef ID="{23510aae-1b6b-4aec-86cd-4046c006580a}" />
+        </FieldRefs>
+    </ContentType>
+
+    <!-- Site list instance -->
+    <ListInstance 
+           CustomSchema="ApplicationCardListSchema.xml"
+           FeatureId="00bfea71-de22-43b2-a848-c05709900100"
+           Title="Application Cards" 
+           Description="List storing the application cards"
+           TemplateType="100"
+           Url="Lists/ApplicationCards">
+   </ListInstance>
+</Elements>

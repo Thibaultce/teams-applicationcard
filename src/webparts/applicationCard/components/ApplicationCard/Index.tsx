@@ -26,7 +26,7 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
 
     this.state = {
       project: null
-    }
+    };
 
   }
 
@@ -34,9 +34,9 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
     this.props.api.getProjectDetails().then(project => {
       this.setState({
         project
-      })
+      });
     });
-    
+
   }
 
   public render(): React.ReactElement<IApplicationCardProps> {
@@ -55,7 +55,7 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
                 <ListCard ListItems={project != null && project.TeamMembers}></ListCard>
               </Card>
               <Card cardTitle="Technologies" cardIcon="technologies">
-              <ListCard ListItems={project != null && project.Technologies}></ListCard>
+                <ListCard ListItems={project != null && project.Technologies}></ListCard>
               </Card>
               {
                 project != null && project.Environments != null && project.Environments.length > 0
@@ -81,18 +81,18 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
               </Card>
               <div className={styles.row}>
                 <div className={styles.column3}>
-                  <Card cardTitle="Architecture" cardIcon="link">
-                    <ListCard ListItems={project != null && project.ArchitectureLinks}></ListCard>
+                <Card cardTitle={project != null && project.Folder1.Name} cardIcon="link">
+                    <ListCard ListItems={project != null && project.Folder1.Items}></ListCard>
                   </Card>
                 </div>
                 <div className={styles.column3}>
-                  <Card cardTitle="Specification" cardIcon="link">
-                  <ListCard ListItems={project != null && project.SpecificationLinks}></ListCard>
+                <Card cardTitle={project != null && project.Folder2.Name} cardIcon="link">
+                    <ListCard ListItems={project != null && project.Folder2.Items}></ListCard>
                   </Card>
                 </div>
                 <div className={styles.column3}>
-                  <Card cardTitle="Mockups" cardIcon="link">
-                  <ListCard ListItems={project != null && project.MockupLinks}></ListCard>
+                  <Card cardTitle={project != null && project.Folder3.Name} cardIcon="link">
+                    <ListCard ListItems={project != null && project.Folder3.Items}></ListCard>
                   </Card>
                 </div>
               </div>

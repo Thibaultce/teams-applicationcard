@@ -10,14 +10,14 @@ export default class Api {
     private _teamsContext?: microsoftTeams.Context;
     private _webPartContext?: WebPartContext;
 
-    private _projectListName: string = 'Projects';
+    private _projectListName: string = 'Application Cards';
     private _sharePointContext: string = 'SharePoint context';
 
-    constructor(teamsContext?: microsoftTeams.Context, con?: WebPartContext) {
+    constructor(con?: WebPartContext, teamsContext?: microsoftTeams.Context) {
 
         this._teamsContext = teamsContext;
         this._webPartContext = con;
-console.log(con);
+
         setup({
             spfxContext: con
         });
@@ -34,7 +34,7 @@ console.log(con);
             : this._webPartContext.pageContext.web.serverRelativeUrl + '/Shared Documents/' + this._sharePointContext;
 
         const files = await sp.web
-            .getFolderByServerRelativePath(folderRelativeUrl + '/' + type)
+            .getFolderByServerRelativePath(folderRelativeUrl + type)
             .files.get();
 
         return files.map(x => <IListItem>{
@@ -56,7 +56,7 @@ console.log(con);
             .getByTitle(this._projectListName)
             .items
             .get()
-        ).filter((e) => e.TeamsChannelIdentifier === channelId);
+        ).filter((e) => e.ACTeamsChannelIdentifier === channelId);
 
         let project;
         if (projects.length == 0) {
@@ -66,44 +66,45 @@ console.log(con);
                 .items
                 .add({
                     Title: channelName,
-                    TeamsChannelIdentifier: channelId
+                    ACTeamsChannelIdentifier: channelId
                 });
             project = addProject.data;
         }
         else {
             project = projects[0];
         }
-
-
-        console.log(project); 
+        
         let result: IAppCard = {
             Id: Guid.parse(project.GUID),
             SpId: project.Id,
-            EditLink: this._webPartContext.pageContext.web.absoluteUrl + '/Lists/' + this._projectListName + '/DispForm.aspx?ID=' + project.Id,
+            EditLink: this._webPartContext.pageContext.web.absoluteUrl + '/Lists/' + this._projectListName.replace(' ', '') + '/DispForm.aspx?ID=' + project.Id,
             Name: project.Title,
             Customer: project.Company,
-            Version: project.ProjectVersion,
+            Version: project.ACVersion,
             Description: project.ACDescription,
             Architecture: project.ACArchitecture,
             TeamName: project.ACTeam,
-            Technologies: project.ACTechnologies0.map(x => <IListItem>{
-                Text: x.Label
-            }),
             DevCorner: project.ACDevCorner
         };
+
+        if (project.ACTechnologies != null){
+            result.Technologies = project.ACTechnologies.map(x => <IListItem>{
+                Text: x.Label
+            });
+        }
 
         if (project.ACTeamMembersId != null){
             const members = project.ACTeamMembersId.map((x: number) => this.getUserTitle(x));
             await Promise.all(members).then((completed) => {
                 result.TeamMembers = completed.map(x => <IListItem>{
                     Text: x
-                })
+                });
             });
         }    
 
-        result.ArchitectureLinks = await this.getFiles('Architecture');
-        result.SpecificationLinks = await this.getFiles('Specifications');
-        result.MockupLinks = await this.getFiles('Mockups');
+        result.Folder1 = { Name: project.ACFolder1, Items: await this.getFiles(project.ACFolder1)};
+        result.Folder2 = { Name: project.ACFolder2, Items: await this.getFiles(project.ACFolder2)};
+        result.Folder3 = { Name: project.ACFolder3, Items: await this.getFiles(project.ACFolder3)};
 
         return result;
     }

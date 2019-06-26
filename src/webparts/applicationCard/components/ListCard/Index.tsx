@@ -16,7 +16,7 @@ export default class ListCard extends React.Component<IListCardProps, IListCardS
             console.log(this.props.ListItems);
         this.state = {
 
-        }
+        };
     }
 
     public render() {
@@ -24,9 +24,9 @@ export default class ListCard extends React.Component<IListCardProps, IListCardS
             <div>
                 <ul className={styles.list}>
                     {
-                        this.props.ListItems && this.props.ListItems.map(function (listItem, index) {
+                        this.props.ListItems && this.props.ListItems.sort((a, b) => (a.Text > b.Text) ? 1 : -1).map((listItem, index) => {
                             var item = listItem.Url != null ? <a href={listItem.Url} target="_blank">{listItem.Text}</a> : listItem.Text;
-                            return <li key={index}>{item}{listItem.Description && <span>{listItem.Description}</span>}</li>
+                            return <li key={index}>{item}{listItem.Description && <span>{listItem.Description}</span>}</li>;
                         })
                     }
                 </ul>

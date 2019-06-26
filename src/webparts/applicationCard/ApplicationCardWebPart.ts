@@ -2,17 +2,11 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import {
-  IPropertyPaneConfiguration,
-  PropertyPaneTextField
-} from '@microsoft/sp-property-pane';
 
-import * as strings from 'ApplicationCardWebPartStrings';
 import ApplicationCard, { IApplicationCardProps } from './components/ApplicationCard';
 import Api from './Api';
 
 export interface IApplicationCardWebPartProps {
-  description: string;
 }
 
 export default class ApplicationCardWebPart extends BaseClientSideWebPart<IApplicationCardWebPartProps> {
@@ -25,13 +19,13 @@ export default class ApplicationCardWebPart extends BaseClientSideWebPart<IAppli
     if (this.context.microsoftTeams) {
       retVal = new Promise((resolve, reject) => {
         this.context.microsoftTeams.getContext(c => {
-          this._api = new Api(c, this.context);
+          this._api = new Api(this.context, c);
           resolve();
         });
       });
     }
     else{
-      this._api = new Api(null);
+      this._api = new Api(this.context, null);
     }
     return retVal;
   }
@@ -55,25 +49,31 @@ export default class ApplicationCardWebPart extends BaseClientSideWebPart<IAppli
     return Version.parse('1.0');
   }
 
-  protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
-    return {
-      pages: [
-        {
-          header: {
-            description: strings.PropertyPaneDescription
-          },
-          groups: [
-            {
-              groupName: strings.BasicGroupName,
-              groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
-            }
-          ]
-        }
-      ]
-    };
-  }
+  // protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+  //   return {
+  //     pages: [
+  //       {
+  //         // header: {
+  //         //   description: strings.PropertyPaneDescription
+  //         // },
+  //         // groups: [
+  //         //   {
+  //         //     groupName: "Folders",
+  //         //     groupFields: [
+  //         //       PropertyPaneTextField('folder1', {
+  //         //         label: "Folder path 1"
+  //         //       }),
+  //         //       PropertyPaneTextField('folder2', {
+  //         //         label: "Folder path 2"
+  //         //       }),
+  //         //       PropertyPaneTextField('folder3', {
+  //         //         label: "Folder path 3"
+  //         //       })
+  //         //     ]
+  //         //   }
+  //         // ]
+  //       //}
+  //     ]
+  //   };
+  // }
 }

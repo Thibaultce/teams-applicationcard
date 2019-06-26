@@ -14,7 +14,7 @@ export default class Box extends React.Component<ICardProps, ICardState> {
     super(props);
 
     this.state = {
-    }
+    };
   }
 
   public render() {

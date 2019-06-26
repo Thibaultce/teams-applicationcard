@@ -13,7 +13,7 @@ export default class TextCard extends React.Component<ITextCardProps, ITextCardS
     super(props);
 
     this.state = {
-    }
+    };
   }
 
   public render() {

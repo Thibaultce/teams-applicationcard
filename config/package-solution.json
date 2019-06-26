@@ -3,10 +3,24 @@
   "solution": {
     "name": "teams-applicationcard-client-side-solution",
     "id": "e08bdcdf-239d-4769-a638-5767ae6f906f",
-    "version": "0.0.3.0",
+    "version": "1.0.6.0",
     "includeClientSideAssets": true,
-    "skipFeatureDeployment": true,
-    "isDomainIsolated": false
+    "skipFeatureDeployment": false,
+    "isDomainIsolated": false,
+    "features": [{  
+      "title": "assetsprovisioning-solution",  
+      "description": "assetsprovisioning-solution",  
+      "id": "586bd1f6-9998-4e8d-a77b-d15a16e10a08",  
+      "version": "1.0.6.0",  
+      "assets": {          
+        "elementManifests": [  
+          "elements.xml"  
+        ],
+        "elementFiles": [
+          "ApplicationCardListSchema.xml"
+        ] 
+      }  
+    }]  
   },
   "paths": {
     "zippedPackage": "solution/teams-applicationcard.sppkg"

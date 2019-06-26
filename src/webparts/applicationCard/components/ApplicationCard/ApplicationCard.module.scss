@@ -1,6 +1,11 @@
 @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
 
 .applicationCard {  
+  font-family: "Segoe UI", "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", Helvetica, Arial, sans-serif;
+  font-size: 0.8em;
+  background-color: white;
+  padding-top: 10px;
+
   .container {
     @include ms-Grid;
   }
@@ -14,8 +19,8 @@
     @include ms-Grid-col;
     @include ms-lg3;
     @include ms-xl3;
-    @include ms-sm4;
-    @include ms-md4;
+    @include ms-sm3;
+    @include ms-md3;
     
   }
 
@@ -23,8 +28,8 @@
     @include ms-Grid-col;
     @include ms-lg9;
     @include ms-xl9;
-    @include ms-sm8;
-    @include ms-md8;
+    @include ms-sm9;
+    @include ms-md9;
   }
 
   .column3 {

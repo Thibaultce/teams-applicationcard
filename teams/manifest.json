@@ -3,9 +3,9 @@
     "manifestVersion": "1.2",
     "packageName": "ApplicationCardWebPart",
     "id": "aa3fecf0-1fd0-4751-aba1-12314dc3a22f",
-    "version": "0.1",
+    "version": "1.0",
     "developer": {
-      "name": "Parker Porcupine",
+      "name": "Thibault Ceulemans",
       "websiteUrl": "https://products.office.com/en-us/sharepoint/collaboration",
       "privacyUrl": "https://privacy.microsoft.com/en-us/privacystatement",
       "termsOfUseUrl": "https://www.microsoft.com/en-us/servicesagreement"

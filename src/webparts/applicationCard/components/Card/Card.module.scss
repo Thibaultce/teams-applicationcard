@@ -31,6 +31,10 @@ $box-marginbottom: 20px;
 
     .cardBody {
         color: #605e5c;
-        padding: 13px;
+        padding: 5px 10px;
+
+        p {
+            padding-left: 8px;
+        }
     }
 }
