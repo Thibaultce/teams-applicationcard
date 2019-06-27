@@ -22,18 +22,18 @@ export default class ProjectCard extends React.Component<IProjectCardProps> {
 
     return (
         <div className={styles.projectCard}>
-          <div className={styles.centered}>
-            {<img src={icon} />}
-          </div>
-          <div className={styles.description}>
-            <span className={styles.projectName}>{this.props.name}</span>
-            <span className={styles.version}>{this.props.version}</span>
-            <span className={styles.customer}>{this.props.client}</span>
-          </div>
-          <div>
-            <a href={this.props.editUrl} target="_blank">Edit</a>
-          </div>
+            <div className={styles.centered}>
+                {<img src={icon} />}
+            </div>
+            <div className={styles.vb}>
+                <span className={styles.project}>{this.props.name}</span><br />
+                <span>{this.props.version}</span><br />
+                <span className={styles.client}>{this.props.client}</span><br /><br/>
+                <span><a href={this.props.editUrl} className={styles.update} target="_blank">Update Card</a></span>
+            </div> <br />
         </div>
+        
+        
     );
   }
 }

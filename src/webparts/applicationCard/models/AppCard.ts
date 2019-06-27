@@ -20,9 +20,19 @@ export interface IAppCard {
 }
 
 export interface IListItem {
+    Type: ListItemType;
+
+    Id?: Guid;
     Text: string;
     Url?: string;
-    Description?: string;
+    Extension?: string;
+    Description?: string;    
+}
+
+export enum ListItemType {
+    Normal = 1,
+    File,
+    Link
 }
 
 export interface IFolder {

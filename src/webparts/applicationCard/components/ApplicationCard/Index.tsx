@@ -6,6 +6,7 @@ import TextCard from '../TextCard';
 import Api from '../../Api';
 import { IAppCard } from '../../models/AppCard';
 import ListCard from '../ListCard';
+import * as microsoftTeams from "@microsoft/teams-js";
 
 
 export interface IApplicationCardProps {
@@ -23,7 +24,7 @@ export default class ApplicationCard extends React.Component<IApplicationCardPro
    */
   constructor(props) {
     super(props);
-
+    microsoftTeams.initialize();
     this.state = {
       project: null
     };

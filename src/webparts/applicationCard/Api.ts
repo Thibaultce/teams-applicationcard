@@ -1,6 +1,6 @@
 import * as microsoftTeams from '@microsoft/teams-js';
 import { WebPartContext } from '@microsoft/sp-webpart-base';
-import { IAppCard, IListItem } from './models/AppCard';
+import { IAppCard, IListItem, ListItemType } from './models/AppCard';
 import { Guid } from '@microsoft/sp-core-library';
 import { sp } from '@pnp/sp';
 import { setup } from "@pnp/common";
@@ -11,7 +11,7 @@ export default class Api {
     private _webPartContext?: WebPartContext;
 
     private _projectListName: string = 'Application Cards';
-    private _sharePointContext: string = 'SharePoint context';
+    private _sharePointContextName: string = 'SharePoint context';
 
     constructor(con?: WebPartContext, teamsContext?: microsoftTeams.Context) {
 
@@ -31,21 +31,27 @@ export default class Api {
     private getFiles = async (type: string): Promise<IListItem[]> => {
         const folderRelativeUrl = this._teamsContext != null
             ? this._teamsContext.channelRelativeUrl
-            : this._webPartContext.pageContext.web.serverRelativeUrl + '/Shared Documents/' + this._sharePointContext;
+            : this._webPartContext.pageContext.web.serverRelativeUrl + '/Shared Documents/' + this._sharePointContextName;
 
         const files = await sp.web
             .getFolderByServerRelativePath(folderRelativeUrl + type)
             .files.get();
 
+        const parseAbsoluteUrl = this._webPartContext.pageContext.web.absoluteUrl.replace(this._webPartContext.pageContext.web.serverRelativeUrl, '');
+        
         return files.map(x => <IListItem>{
+            Type: ListItemType.File,
+
+            Id: x.UniqueId,
             Text: x.Name,
-            Url: x.ServerRelativeUrl
+            Url: parseAbsoluteUrl + x.ServerRelativeUrl,
+            Extension: x.Name.split('.').pop()
         });
     }
 
     public getProjectDetails = async (): Promise<IAppCard> => {
-        let channelId = this._sharePointContext;
-        let channelName = this._sharePointContext;
+        let channelId = this._sharePointContextName;
+        let channelName = this._sharePointContextName;
 
         if (this._teamsContext) {
             channelId = this._teamsContext.channelId;
@@ -89,6 +95,7 @@ export default class Api {
 
         if (project.ACTechnologies != null){
             result.Technologies = project.ACTechnologies.map(x => <IListItem>{
+                Type: ListItemType.Normal,
                 Text: x.Label
             });
         }
@@ -97,6 +104,7 @@ export default class Api {
             const members = project.ACTeamMembersId.map((x: number) => this.getUserTitle(x));
             await Promise.all(members).then((completed) => {
                 result.TeamMembers = completed.map(x => <IListItem>{
+                    Type: ListItemType.Normal,
                     Text: x
                 });
             });
