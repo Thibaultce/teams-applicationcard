@@ -1,9 +1,9 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "teams-applicationcard-client-side-solution",
-    "id": "e08bdcdf-239d-4769-a638-5767ae6f906f",
-    "version": "1.0.6.0",
+    "name": "teams-applicationcard",
+    "id": "e08bdcdf-239d-4769-a638-5767ae6f9012",
+    "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": false,
     "isDomainIsolated": false,
@@ -11,7 +11,7 @@
       "title": "assetsprovisioning-solution",  
       "description": "assetsprovisioning-solution",  
       "id": "586bd1f6-9998-4e8d-a77b-d15a16e10a08",  
-      "version": "1.0.6.0",  
+      "version": "1.0.0.0",  
       "assets": {          
         "elementManifests": [  
           "elements.xml"  

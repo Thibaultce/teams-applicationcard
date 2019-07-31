@@ -27,7 +27,7 @@ export default class ListCard extends React.Component<IListCardProps, IListCardS
         });
     }
 
-    openFile(e, fileId: Guid, fileType: string, url: string) {
+    private openFile(e, fileId: Guid, fileType: string, url: string) {
         e.preventDefault();
         microsoftTeams.executeDeepLink("https://teams.microsoft.com/l/file/" + fileId + "?tenantId=" + this._tenantId + "&fileType=" + fileType + "&objectUrl=" + encodeURIComponent(url));
     }
