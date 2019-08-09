@@ -16,13 +16,13 @@
                     <Name>SspId</Name>
                     <!--ID of the Managed metadata service -->
                     <Value xmlns:q1="http://www.w3.org/2001/XMLSchema" p4:type="q1:string" 
-                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">9549fb5c7eb5412c862f8ee74ae52b3b</Value>
+                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">d349a6d86d5d47438393903799c8db3e</Value>
                 </Property>
                 <Property>
                     <Name>TermSetId</Name>
                     <!--ID of the Termset -->
                     <Value xmlns:q2="http://www.w3.org/2001/XMLSchema" p4:type="q2:string" 
-                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">868118a8-51d5-40d6-a478-8dde87ba6a18</Value>
+                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">2d489387-1f83-44cd-9754-ed60b5137864</Value>
                 </Property>
                 <Property>
                     <Name>TextField</Name>
