@@ -2,9 +2,13 @@
 
 .list {
     
-    padding-left: 25px;
+    padding-left: 15px;
     list-style-type:square;
         li {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            list-style-position: inside;
             a {
                 color: #ca5010;
                 text-decoration: none;

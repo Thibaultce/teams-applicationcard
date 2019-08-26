@@ -96,7 +96,7 @@ export default class Api {
         if (project.ACTechnologies != null){
             result.Technologies = project.ACTechnologies.map(x => <IListItem>{
                 Type: ListItemType.Normal,
-                Text: x.Label
+                Text: x.Label.split(":").pop()
             });
         }
 
